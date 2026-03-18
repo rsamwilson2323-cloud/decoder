@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>VeilText Decoder</title>
+<style>
+body {
+    font-family: monospace;
+    background: #000814;
+    color: #ffd166;
+    padding: 20px;
+}
+textarea {
+    width: 100%;
+    height: 300px;
+    background: #001d3d;
+    color: #ffd166;
+    border: 1px solid #ffd166;
+    padding: 10px;
+    overflow: auto;
+}
+button {
+    margin: 15px 0;
+    padding: 10px 25px;
+    background: #ffd166;
+    color: #000;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<h2>🔓 VeilText Decoder</h2>
+
+<textarea id="encodedText" placeholder="Paste encoded text here..."></textarea>
+
+<button onclick="decode()">Decode</button>
+
+<textarea id="decodedText" placeholder="Original text will appear here..."></textarea>
+
+<script>
+function decode() {
+    let encoded = document.getElementById("encodedText").value.split(".");
+    let result = [];
+
+    for (let part of encoded) {
+        let num = parseInt(part, 36);
+        num = (num / 3) - 777;   // reverse logic
+        result.push(String.fromCharCode(num));
+    }
+
+    document.getElementById("decodedText").value = result.join("");
+}
+</script>
+
+</body>
+</html>
